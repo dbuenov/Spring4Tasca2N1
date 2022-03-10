@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Llistat de treballadors</title>
+</head>
+<body>
+	<h1>Llistat de treballadors</h1>
+
+	<table border =1>
+		<thead>
+			<tr><th> Id <th> Nom <th> Feina <th> Sou <th> Delete <th> Update </tr> 
+		</thead>
+		<tbody>
+		<tr th:if="${treballadors.empty}">
+			<td colspan="2"> No hi ha treballadors </td>
+			</tr>
+			<tr th:each="treballador : ${treballadors}">
+				<td><span th:text="${treballador.id}"></span></td>
+				<td><span th:text="${treballador.nom}"></span></td>
+				<td><span th:text="${treballador.nomFeina}"></span></td>
+				<td><span th:text="${treballador.sou}"></span></td>
+				<td><a th:href="@{/delete/}+${treballador.id}">X</a></td>
+				<td><a th:href="@{/update/}+${treballador.id}">X</a></td>
+			</tr>		
+		</tbody>	
+	</table>
+	<form th:action="${action}" method="post">
+		<br> 
+			ID: <input type=text name=id th:value="${treballador?.id}">
+			NOM: <input type=text name=nom th:value="${treballador?.nom}">
+			ID FEINA: <input type=text name=idFeina th:value="${treballador?.idFeina}">
+			<input type=submit name=submit th:value="${boton}">				
+	</form>	
+	
+</body>
+	
+</html>
